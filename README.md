@@ -10,21 +10,6 @@ production-quality modules rather than one-off notebooks, and designed to be
 dual-purpose: a public portfolio piece *and* a toolkit I actually use for my
 own investment research.
 
-`nlp/` is a temporary home for financial NLP baselines; once the representation
-comparison matures (H10), the reusable pieces (`preprocess/`, `features/`,
-`eval/`) graduate into a standalone package, [`financial-nlp-toolkit`](https://github.com/CeyhanTurnali/financial-nlp-toolkit).
-
-## Status
-
-| Area | Status | Introduced |
-|---|---|---|
-| optimization | 🟡 in progress | Week 1 |
-| nlp | 🟡 in progress | Week 1 |
-| macro | 🟡 in progress | Week 1 |
-| deep-learning | ⚪ planned | Week 3 |
-| attention | ⚪ planned | Week 5 |
-| sequence-models | ⚪ planned  | Week 7 |
-
 ## Development
 
 ```bash
