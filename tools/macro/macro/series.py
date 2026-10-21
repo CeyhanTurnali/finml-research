@@ -17,6 +17,7 @@ in_growth / in_inflation -> kompozit endekse dahil mi?
 
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class Series:
     fred_id: str

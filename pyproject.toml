@@ -1,7 +1,7 @@
 [project]
-name = "quant-research-lab"
-version = "0.1.0"
-description = "Applied quant research: optimization, deep learning, attention, and financial NLP — production-quality modules, not notebooks."
+name = "finml-research"
+version = "0.2.0"
+description = "Applied research at the intersection of finance and machine learning: reproducible code behind each blog post, plus the tools I use for my own investment research."
 requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "MIT" }
@@ -12,12 +12,24 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-nlp = ["gensim>=4.3", "nltk"]
-macro = ["fredapi", "pyarrow"]
+# One extra per post or tool, so each can be installed on its own.
+blog01 = ["yfinance", "scipy", "matplotlib", "pyarrow"]
+macro = ["fredapi", "pyarrow", "matplotlib", "python-dotenv"]
 dev = ["pytest", "pytest-cov", "ruff"]
+
+# This repo is a collection of research folders, not an installable library:
+# `pip install -e ".[...]"` installs dependencies only.
+[tool.setuptools]
+packages = []
+
+[tool.pytest.ini_options]
+pythonpath = ["tools/macro"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.ruff.lint.isort]
+known-first-party = ["macro"]
 
 [build-system]
 requires = ["setuptools>=68"]

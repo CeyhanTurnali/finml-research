@@ -14,13 +14,12 @@ Kurulum:
 from __future__ import annotations
 
 import os
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
 
 from . import series as reg
-
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 CACHE = DATA_DIR / "fred_cache.parquet"
@@ -51,7 +50,7 @@ def _load_cache() -> pd.DataFrame:
 def _is_stale() -> bool:
     if not CACHE.exists():
         return True
-    age = datetime.now() - datetime.fromtimestamp(CACHE.stat().st_mtime)
+        age = datetime.now(UTC) - datetime.fromtimestamp(CACHE.stat().st_mtime, tz=UTC)
     return age > timedelta(hours=STALE_HOURS)
 
 def fetch_raw(force: bool = False, ids: list[str] | None = None) -> pd.DataFrame:
@@ -72,7 +71,7 @@ def fetch_raw(force: bool = False, ids: list[str] | None = None) -> pd.DataFrame
         try:
             s = fred.get_series(sid, observation_start=START)
             frames[sid] = s.rename(sid)
-        except Exception as exc:  # seri kaldırılmış / erişilemiyor olabilir
+        except Exception as exc:  # noqa: BLE001 — seri kaldırılmış / erişilemiyor olabilir
             failed.append((sid, str(exc)[:80]))
  
     if failed:
@@ -84,7 +83,7 @@ def fetch_raw(force: bool = False, ids: list[str] | None = None) -> pd.DataFrame
     df.to_parquet(CACHE)
  
     pd.DataFrame(
-        {"fetched_at": [datetime.now()], "n_series": [df.shape[1]]}
+                {"fetched_at": [datetime.now(UTC)], "n_series": [df.shape[1]]}
     ).to_parquet(META)
  
     return df

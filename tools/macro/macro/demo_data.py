@@ -3,9 +3,11 @@ DEMO veri üreteci — FRED erişimi olmadan dashboard çıktısını göstermek
 Gerçekçi bir makro yörünge kurgular: 2019 normal -> 2020 COVID çöküşü ->
 2021 reflasyon -> 2022 stagflasyon -> 2023-25 dezenflasyon/toparlanma.
 """
+import sys
+
 import numpy as np
 import pandas as pd
-import sys
+
 sys.path.insert(0, '.')
 from macro import series as reg
 

@@ -15,8 +15,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install package (with nlp + macro + dev extras)
-        run: pip install -e ".[nlp,macro,dev]"
+      - name: Install dependencies (all post/tool extras + dev)
+        run: pip install -e ".[blog01,macro,dev]"
 
       - name: Lint
         run: ruff check .
