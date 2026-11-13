@@ -15,11 +15,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies (all post/tool extras + dev)
-        run: pip install -e ".[blog01,macro,dev]"
+      - name: Install dependencies 
+        run: pip install -e ".[blog01,dev]"
 
       - name: Lint
         run: ruff check .
 
       - name: Test
-        run: pytest --cov --cov-report=term-missing
+        run: pytest || [ $? -eq 5 ]

@@ -1,7 +1,7 @@
 [project]
 name = "finml-research"
 version = "0.2.0"
-description = "Applied research at the intersection of finance and machine learning: reproducible code behind each blog post, plus the tools I use for my own investment research."
+description = "Applied research at the intersection of finance and machine learning: reproducible code behind each blog post"
 requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "MIT" }
@@ -12,9 +12,8 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# One extra per post or tool, so each can be installed on its own.
+# One extra per post, so each can be installed on its own.
 blog01 = ["yfinance", "scipy", "matplotlib", "pyarrow"]
-macro = ["fredapi", "pyarrow", "matplotlib", "python-dotenv"]
 dev = ["pytest", "pytest-cov", "ruff"]
 
 # This repo is a collection of research folders, not an installable library:
@@ -22,14 +21,11 @@ dev = ["pytest", "pytest-cov", "ruff"]
 [tool.setuptools]
 packages = []
 
-[tool.pytest.ini_options]
-pythonpath = ["tools/macro"]
-
 [tool.ruff]
 line-length = 100
 
 [tool.ruff.lint.isort]
-known-first-party = ["macro","hidden_constraint"]
+known-first-party = ["hidden_constraint"]
 
 [build-system]
 requires = ["setuptools>=68"]

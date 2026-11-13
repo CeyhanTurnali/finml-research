@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def variance (w: np.ndarray, cov: np.ndarray) -> float:
 
     return float(w.T @ cov @ w)
