@@ -41,6 +41,15 @@ def optimize(
             k += 1
             if method == "gd":
                 step = g
+            elif method == "momentum":
+                m = beta * m + g
+                step = m
+            else:  # adam
+                m = beta1 * m + (1 - beta1) * g
+                v = beta2 * v + (1 - beta2) * g**2
+                m_hat = m / (1 - beta1**k)
+                v_hat = v / (1 - beta2**k)
+                step = project_budget(m_hat / (np.sqrt(v_hat) + eps))
             w = w - lr * step
         path[target] = w.copy()
     return path
