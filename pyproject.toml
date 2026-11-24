@@ -4,7 +4,7 @@ version = "0.2.0"
 description = "Applied research at the intersection of finance and machine learning: reproducible code behind each blog post"
 requires-python = ">=3.11"
 readme = "README.md"
-license = { text = "MIT" }
+
 dependencies = [
     "numpy",
     "pandas",
