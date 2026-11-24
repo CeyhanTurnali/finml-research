@@ -1,15 +1,19 @@
 from collections.abc import Iterable
+
 import numpy as np
+
 from .objective import gradient, project_budget
 
-METHODS = ["gd","momentum","adam"]
+METHODS = ["gd", "momentum", "adam"]
 
-def default_lr(method:str, cov:np.ndarray)-> float:
+
+def default_lr(method: str, cov: np.ndarray) -> float:
     if method in ("gd", "momentum"):
         return 1.0 / np.linalg.eigvalsh(cov)[-1]
     if method == "adam":
         return 1e-3
     raise ValueError(f"unknown method {method!r}")
+
 
 def optimize(
     cov: np.ndarray,
